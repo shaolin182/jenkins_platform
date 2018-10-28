@@ -1,1 +1,2 @@
-jenkins_master/secrets/*
+JENKINS_PASSWORD
+JENKINS_USER
