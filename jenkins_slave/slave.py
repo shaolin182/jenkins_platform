@@ -1,3 +1,6 @@
+'''
+Inspired by https://github.com/CodeMazeBlog/docker-series
+'''
 from jenkins import Jenkins, JenkinsError, NodeLaunchMethod
 import os
 import signal
