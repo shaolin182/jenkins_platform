@@ -11,11 +11,18 @@ Plugins from jenkins_master/plugins.txt will be automatically installed
 
 
     # Add secrets files in jenkins-master/secret folder
-    echo "Default_Jenkins_User_to_change" > ./jenkins_master/secrets/JENKINS_USER
-    echo "Default_Jenkins_password_to_change" > ./jenkins_master/secrets/JENKINS_PASSWORD
+    echo -n "Default_Jenkins_User_to_change" > ./jenkins_master/secrets/JENKINS_USER
+    echo -n "Default_Jenkins_password_to_change" > ./jenkins_master/secrets/JENKINS_PASSWORD
+
+    # On windows env, export that variable fof handling path
+    export COMPOSE_CONVERT_WINDOWS_PATHS=1
 
     # Build and run containers
-    docker-compose up -d --build --force-recreate
+    docker-compose up -d --build
 
-# TODO
-Add a volume for persisting jenkins configurations
+# Jenkins plugins
+In order to get a list of all installed plugins, you can run those commands
+
+
+    JENKINS_HOST=username:password@myhost.com:port
+    curl -sSL "http://$JENKINS_HOST/pluginManager/api/xml?depth=1&xpath=/*/*/shortName|/*/*/version&wrapper=plugins" | perl -pe 's/.*?<shortName>([\w-]+).*?<version>([^<]+)()(<\/\w+>)+/\1 \2\n/g'|sed 's/ /:/'
