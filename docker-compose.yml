@@ -12,6 +12,8 @@ services:
     secrets:
       - jenkins-user
       - jenkins-pass
+    volumes:
+      - ./jenkins_home:/var/jenkins_home
   jenkins-slave:
     container_name: jenkins-slave
     restart: always
