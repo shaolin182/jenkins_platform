@@ -28,4 +28,4 @@ ENV SLAVE_LABELS "docker"
 ENV SLAVE_WORING_DIR ""
 ENV CLEAN_WORKING_DIR "true"
  
-CMD [ "python", "-u", "/var/lib/jenkins/slave.py" ]s
+CMD [ "python", "-u", "/var/lib/jenkins/slave.py" ]
