@@ -16,7 +16,7 @@ services:
       - ./jenkins_home:/var/jenkins_home
   jenkins-slave:
     container_name: jenkins-slave
-    restart: always
+    restart: unless-stopped
     environment:
       - 'JENKINS_URL=http://jenkins-master:8080'
     image: jenkins/jenkins-slave
